@@ -1,5 +1,6 @@
 // Importation des variables 
 @use "./utils/variables" as *; // Rendre disponible les variables dans le contexte globale du fichier actuel
+@use './components/button';
 
 /**** IMPORTATION DE BOOTSTRAP *****/
 // Injecter nos propres valeurs dans les variables Bootstrap avant qu'elles ne soient utilisées par Bootstrap

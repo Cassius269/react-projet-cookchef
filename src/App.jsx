@@ -6,9 +6,12 @@ export default function App(){
     return(
         <>
             <Header />
-            <main>
-                <h1 className='text-primary'>Cookchef</h1>
-                <div>
+            <main className='container'>
+                <h1 className='text-primary'>Découvrez nos nouvelles recettes</h1>
+                <div className='row d-flex justify-content-center gap-4 gap-md-4 gap-lg-5'>
+                    <Recipe title="Huîtres chaudes, sauce acidulée" imageUrl="https://assets.afcdn.com/recipe/20151102/21234_w1024h768c1cx1500cy2250.jpg" note={4} numberComments="5" />
+                    <Recipe title="Huîtres chaudes, sauce acidulée" imageUrl="https://assets.afcdn.com/recipe/20151102/21234_w1024h768c1cx1500cy2250.jpg" note={4} numberComments="5" />
+                    <Recipe title="Huîtres chaudes, sauce acidulée" imageUrl="https://assets.afcdn.com/recipe/20151102/21234_w1024h768c1cx1500cy2250.jpg" note={4} numberComments="5" />
                     <Recipe title="Huîtres chaudes, sauce acidulée" imageUrl="https://assets.afcdn.com/recipe/20151102/21234_w1024h768c1cx1500cy2250.jpg" note={4} numberComments="5" />
                     <Recipe title="Huîtres chaudes, sauce acidulée" imageUrl="https://assets.afcdn.com/recipe/20151102/21234_w1024h768c1cx1500cy2250.jpg" note={4} numberComments="5" />
                     <Recipe title="Huîtres chaudes, sauce acidulée" imageUrl="https://assets.afcdn.com/recipe/20151102/21234_w1024h768c1cx1500cy2250.jpg" note={4} numberComments="5" />

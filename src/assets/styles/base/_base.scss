@@ -8,9 +8,18 @@
 }
 
 html {
-  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
 }
 
 body {
-  // background-color: rgb(162, 147, 147);
+  font-family: variables.$font_familiy;
+  h1{
+    text-align: center;
+    margin-top: 3rem;
+  }
 }
+
+ul {
+  list-style-type: none; // désactiver les puces des listes
+}
+

@@ -6,6 +6,7 @@ article {
     height: 400px;
     border: 3px solid $primary;
     padding: 0.5rem;
+    cursor: pointer;
     // background-image: url('https://assets.afcdn.com/recipe/20151102/21234_w1024h768c1cx1500cy2250.jpg');
     background-size: cover;
     display: flex;
@@ -13,13 +14,27 @@ article {
     justify-content: end;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     border-radius: 4px;
-    h2,p {
+    h4,p {
         color: white;
         background-color: $secondary;
         padding: 0.5rem;
     }
+    h2 {
+        font-size: 18px;
+    }
+
+    transform: scale(1);
+    transition: transform 2s ease;
+    &:hover {
+        transform: scale(1.02);
+    }
+    
+    @media screen and (max-width > 795px) {
+        background-color: red;
+        font-size: 40px !important;
+    }
 }
 
 // .imageRecipe {
-//     width: 300px;
+
 // }

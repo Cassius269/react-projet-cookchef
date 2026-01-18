@@ -6,9 +6,9 @@ console.log(imageUrl)
 
     return (
         <article className="col-8 col-md-6 col-lg-3">
-            <img className={`w-100 overflow-hidden ${styles.imageRecipe}`} src={imageUrl} alt="image représentant le plat" width={200}/>
-            <h4>{title}</h4>
-            <p>{noteToStars(note)} 4/5 </p>
+            <img className={`w-100 overflow-hidden ${styles.imageRecipe}`} src={imageUrl} alt={title} width={200} loading='lazy'  />
+            <h2>{title}</h2>
+            <p>{noteToStars(note)} {Math.trunc(note*5)}/5 </p>
             <p>{numberComments} avis </p>
             <button type='button' className='btn btn-primary'>Découvrir</button>
         </article>
@@ -17,12 +17,10 @@ console.log(imageUrl)
 
 function noteToStars(note){
     let stars = '';
-    for(let i = 0; i < note; i++){
+    let limit = Math.trunc(note*5);
+
+    for(let i = 0; i < limit; i++){
         stars+='★';
-        
-        if(i >=4) {
-            break;
-        }
     }
 
     return stars;

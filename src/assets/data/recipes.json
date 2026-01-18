@@ -1,0 +1,71 @@
+[
+  {
+    "id": 1,
+    "title": "Huîtres chaudes, sauce acidulée",
+    "content": "<h2>Préparation de la sauce</h2><ol><li>Éplucher et émincer finement les échalotes.</li><li>Les mettre dans une petite casserole avec le vin blanc et le vinaigre.</li><li>Laisser réduire à feu doux jusqu'à obtenir une texture sirupeuse.</li><li>Hors du feu, ajouter le beurre petit à petit en fouettant pour émulsionner.</li><li>Remettre sur feu très doux pour garder la sauce tiède sans la faire bouillir.</li></ol><h2>Cuisson des huîtres</h2><ol><li>Disposer les huîtres fermées quelques minutes à la vapeur jusqu'à ce qu'elles s'ouvrent.</li><li>Retirer la coquille supérieure.</li><li>Jeter l'eau de végétation et vérifier qu'il ne reste aucun éclat de coquille.</li></ol><h2>Finition et service</h2><ol><li>Napper chaque huître d'une cuillerée de sauce acidulée.</li><li>Parsemer de ciboulette ciselée.</li><li>Disposer les huîtres sur du gros sel dans des assiettes chaudes.</li><li>Servir immédiatement en entrée avec un vin blanc sec et vif.</li></ol>",
+    "note": 0.8,
+    "imageUrl": "https://assets.afcdn.com/recipe/20151102/21234_w1024h768c1cx1500cy2250.jpg",
+    "comments": [
+      {
+        "text": "Très bonne recette",
+        "author": "Chef Paul"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Tartare de saumon fumé",
+    "content": "<h2>Préparation</h2><ol><li>Couper le saumon fumé en petits dés réguliers.</li><li>Hacher finement l'échalote, le concombre et la ciboulette.</li><li>Mélanger le saumon avec tous les ingrédients dans un bol.</li><li>Ajuster l'assaisonnement et laisser reposer 15 minutes au frais.</li><li>Dresser en cercles dans des assiettes avec un filet d'huile d'olive.</li></ol>",
+    "note": 0.9,
+    "imageUrl": "https://assets.afcdn.com/recipe/20151102/21234_w1024h768c1cx1500cy2250.jpg",
+    "comments": [
+      {
+        "text": "Fraîcheur parfaite !",
+        "author": "Marie D."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Carpaccio de Saint-Jacques",
+    "content": "<h2>Préparation</h2><ol><li>Trancher très finement les noix de Saint-Jacques congelées (au couteau ou à la mandoline).</li><li>Disposer les tranches en rosace sur une assiette froide.</li><li>Préparer la vinaigrette : jus de citron, huile d'olive, sel de mer, poivre.</li><li>Napper les Saint-Jacques de vinaigrette et ajouter zeste de citron vert.</li><li>Laisser mariner 5 minutes au réfrigérateur. Parsemer de ciboulette.</li></ol>",
+    "note": 0.85,
+    "imageUrl": "https://assets.afcdn.com/recipe/20151102/21234_w1024h768c1cx1500cy2250.jpg",
+    "comments": [
+      {
+        "text": "Texture divine",
+        "author": "Gastronome75"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Soupe de potimarron et châtaignes",
+    "content": "<h2>Préparation</h2><ol><li>Couper le potimarron en morceaux (garder la peau).</li><li>Faire suer l'oignon dans l'huile d'olive, ajouter le potimarron.</li><li>Mouiller avec le bouillon, cuire 25 minutes.</li><li>Ajouter les châtaignes cuites, mixer finement au blender.</li><li>Ajuster sel, poivre, muscade. Servir avec crème fouettée et croûtons.</li></ol>",
+    "note": 0.75,
+    "imageUrl": "https://assets.afcdn.com/recipe/20151102/21234_w1024h768c1cx1500cy2250.jpg",
+    "comments": [
+      {
+        "text": "Idéale pour l'hiver",
+        "author": "Dodor"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Magret de canard aux figues",
+    "content": "<h2>Préparation</h2><ol><li>Inciser la peau du magret en croisillons, cuire côté peau 10 min à feu moyen.</li><li>Retourner, cuire 5 min rosé. Réserver au chaud.</li><li>Déglacer la poêle avec vinaigre balsamique et fond de veau.</li><li>Ajouter les figues coupées en deux, réduire en sauce sirupeuse.</li><li>Trancher le magret, napper de sauce aux figues. Servir avec purée de céleri.</li></ol>",
+    "note": 0.95,
+    "imageUrl": "https://assets.afcdn.com/recipe/20151102/21234_w1024h768c1cx1500cy2250.jpg",
+    "comments": [
+      {
+        "text": "Suculent !",
+        "author": "Epicurien"
+      },
+      {
+        "text": "Idéale entre amis",
+        "author": "Dodor"
+      }
+    ]
+  }
+]

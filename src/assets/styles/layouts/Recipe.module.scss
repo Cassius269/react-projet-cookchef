@@ -7,7 +7,6 @@ article {
     border: 3px solid $primary;
     padding: 0.5rem;
     cursor: pointer;
-    // background-image: url('https://assets.afcdn.com/recipe/20151102/21234_w1024h768c1cx1500cy2250.jpg');
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -22,19 +21,24 @@ article {
     h2 {
         font-size: 18px;
     }
-
-    transform: scale(1);
-    transition: transform 2s ease;
-    &:hover {
-        transform: scale(1.02);
-    }
-    
+  
     @media screen and (max-width > 795px) {
         background-color: red;
         font-size: 40px !important;
     }
+
+    &:hover {
+        .imageRecipe {
+            transform: scale(1.05);        
+        }
+    }
 }
 
-// .imageRecipe {
-
-// }
+.imageRecipe {
+    display: block !important;     
+    object-fit: cover;            
+    width: 100%;  
+    height: 100%;               
+    overflow: hidden;  
+    transition: transform 0.5s ease;  
+}

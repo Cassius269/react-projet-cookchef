@@ -1,16 +1,20 @@
+import { useState } from 'react';
 import styles from'../assets/styles/layouts/Recipe.module.scss';
 
 const Recipe = ({title, imageUrl, note, numberComments}) => {
-console.log(imageUrl)
-    // const backgroundImage = `url(${imageUrl}`;
-
+    // Définition d'un état de like ou pas
+    const [isLiked, setIsLiked] = useState(false);
+    
+    // Gestionnaire d'évenement pour changer l'état du composant recette concernant si le bouton Like
+    const handleClick = () => setIsLiked(!isLiked);
+    
     return (
-        <article className="col-8 col-md-6 col-lg-3">
-            <img className={`w-100 overflow-hidden ${styles.imageRecipe}`} src={imageUrl} alt={title} width={200} loading='lazy'  />
-            <h2>{title}</h2>
+        <article onClick={handleClick} className="col-8 col-md-6 col-lg-3">
+            <img className={styles.imageRecipe} src={imageUrl} alt={title} loading='lazy'  />
+            <h2 className='bg-danger'>{title}</h2>
             <p>{noteToStars(note)} {Math.trunc(note*5)}/5 </p>
             <p>{numberComments} avis </p>
-            <button type='button' className='btn btn-primary'>Découvrir</button>
+            <i  role='button' className={`bi bi-heart-fill fs-5 d-block-inline m-auto ${isLiked ? 'text-danger' : ''}`}></i>
         </article>
     )
 }

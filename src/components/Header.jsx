@@ -23,7 +23,7 @@ function Header(){
             </div>
             
             {/* Header mobile */}
-            {isActive ? <Popover /> : '' }
+            {isActive && <Popover onClick={() => setIsActive(false) } /> }
             <i popoverTarget="my-popover" role='button' onClick={handleClick} id={styles.burgerIcon} className={`d-sm-block text-secondary d-md-none bi bi-${isActive ? 'circle text-danger' : 'list'} text-primary fs-1`}></i>
 
         </header>

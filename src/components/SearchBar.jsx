@@ -14,7 +14,8 @@ function SearchBar(){
     // A chaque input tapé, faire une recherche instantanné sur les recettes pour trouver une équivalence
     const handleInput = (e) => {
         const q = e.target.value;
-        const search = data.filter((r) => r.title.includes(q.toLowerCase() )); // chercher les occurences du mot tapé dans les titres de recette
+        console.log(`q vaut ${q}`);
+        const search = data.filter((r) => r.title.toLowerCase().includes( q.toLowerCase() )); // chercher les occurences du mot tapé dans les titres de recette
         console.log(`Résultat : ${search}`);
 
         setResults(search);

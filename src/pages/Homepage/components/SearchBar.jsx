@@ -1,12 +1,9 @@
 // Import de la data des recettes
 import { useState } from "react";
-import recipes from "../../../assets/data/recipes.json";
 import Recipe from "./Recipes/Recipe";
 
-function SearchBar() {
+function SearchBar({ recipes }) {
   const [results, setResults] = useState([]);
-
-  const data = [...recipes];
 
   // Désactiver le comportement par défaut de soumission de formulaire (éviter le chargement de page)
   const handleSubmit = (e) => e.preventDefault();
@@ -15,7 +12,7 @@ function SearchBar() {
   const handleInput = (e) => {
     const q = e.target.value;
     console.log(`q vaut ${q}`);
-    const search = data.filter((r) =>
+    const search = recipes.filter((r) =>
       r.title.toLowerCase().includes(q.toLowerCase()),
     ); // chercher les occurences du mot tapé dans les titres de recette
     console.log(`Résultat : ${search}`);

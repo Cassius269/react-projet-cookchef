@@ -1,10 +1,10 @@
-import data from './recipes.json';
+import recipes from './recipes.json';
 
 async function SeedRecipes(){
         try{
             const response = await fetch('https://www.restapi.fr/api/recipes', {
                 method: 'POST', 
-                body: JSON.stringify(data), // stringifier la recette en tant que charge utile de la requête POST
+                body: JSON.stringify(recipes), // stringifier les recettes en tant que charge utile de la requête POST
                 headers: { "Content-Type": "application/json"}
             });
 

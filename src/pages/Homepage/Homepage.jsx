@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Recipes from "./components/Recipes/Recipes";
 import SearchBar from "./components/SearchBar";
 import Loading from "../../components/Loading";
+import { UrlAPIContext } from "../../context/UrlAPIContext";
 
 function Homepage() {
+  // Récupérer le context de l'URL de l'API telle que fournie en valeur dans "/src/main.jsx"
+  const BASE_URL_API = useContext(UrlAPIContext);
+
   // Déclaration de l'état du composant
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +18,7 @@ function Homepage() {
     const getRecipesFromAPI = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch("https://www.restapi.fr/api/recipes");
+        const response = await fetch(BASE_URL_API);
 
         // si la réponse est ok et que la requête n'est pas annulée
         if (response.ok && !cancel) {
@@ -27,7 +31,7 @@ function Homepage() {
       } catch (error) {
         console.log(`Erreur: ${error.message}`);
       } finally {
-        // si la requête est en cours, mettre le loading à false
+        // si la requête est terminée et qu'elle n'a pas été annulée, mettre le loading à false
         if (!cancel) {
           setIsLoading(false);
         }
@@ -39,7 +43,7 @@ function Homepage() {
 
     // Fonction de clean-up
     return () => (cancel = true);
-  }, []);
+  }, [BASE_URL_API]);
 
   // console.log(recipes);
   return (

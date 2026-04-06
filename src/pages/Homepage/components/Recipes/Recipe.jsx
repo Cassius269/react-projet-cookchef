@@ -3,7 +3,8 @@ import styles from "../../../../assets/styles/layouts/Recipe.module.scss";
 import { UrlAPIContext } from "../../../../context/UrlAPIContext";
 import Loading from "../../../../components/Loading";
 
-const Recipe = ({ recipe, updateRecipe }) => {
+const Recipe = ({ recipe, toggleLikedRecipe }) => {
+  console.log("resultat", recipe);
   // Récupéer l'URL de l'API des recettes depuis le contexte de l'app
   const BASE_URL_API = useContext(UrlAPIContext);
 
@@ -25,7 +26,7 @@ const Recipe = ({ recipe, updateRecipe }) => {
         if (response.ok) {
           const data = await response.json();
           console.log("Réponse du serveur", data);
-          updateRecipe(recipeToUpdate); // mettre à jour l'état local
+          toggleLikedRecipe(recipeToUpdate); // mettre à jour l'état local de la recette
         } else {
           console.log("Ooops, une erreur");
         }

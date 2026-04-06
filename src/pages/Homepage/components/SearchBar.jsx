@@ -50,15 +50,7 @@ function SearchBar({ recipes }) {
           <h2>Résultats {results.length}</h2>
           <div className="d-flex justify-content-around flex-wrap gap-4 gap-md-1">
             {results.map((r) => {
-              return (
-                <Recipe
-                  key={r.id}
-                  title={r.title}
-                  imageUrl={r.imageUrl}
-                  note={r.note}
-                  numberComments={r.comments.length}
-                />
-              );
+              return <Recipe key={r._id} recipe={r} />;
             })}
           </div>
         </section>

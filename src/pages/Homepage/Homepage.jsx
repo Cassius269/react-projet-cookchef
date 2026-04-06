@@ -46,11 +46,22 @@ function Homepage() {
   }, [BASE_URL_API]);
 
   // console.log(recipes);
+
+  const updateRecipe = (updatedRecipe) => {
+    setRecipes(
+      recipes.map((r) => (r._id === updatedRecipe._id ? updatedRecipe : r)),
+    );
+  };
+
   return (
     <main className="container">
       <SearchBar recipes={recipes} />
       <section>
-        {isLoading ? <Loading /> : <Recipes recipes={recipes} />}
+        {isLoading ? (
+          <Loading isLarge={false} />
+        ) : (
+          <Recipes recipes={recipes} updateRecipe={updateRecipe} />
+        )}
       </section>
     </main>
   );

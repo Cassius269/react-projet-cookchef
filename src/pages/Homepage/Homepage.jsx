@@ -66,7 +66,7 @@ function Homepage() {
     <main className="container">
       <SearchBar recipes={recipes} />
       <section>
-        {isLoading ? (
+        {isLoading && !recipes.length ? (
           <Loading isLarge={false} />
         ) : (
           <Recipes recipes={recipes} updateRecipe={updateRecipe} />
@@ -76,7 +76,7 @@ function Homepage() {
           type="button"
           className="btn btn-warning d-block m-auto mt-5"
         >
-          Charger plus d'articles
+          Charger plus de recettes
         </button>
       </section>
     </main>

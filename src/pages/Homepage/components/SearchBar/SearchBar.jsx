@@ -1,6 +1,6 @@
 // Import de la data des recettes
 import { useState } from "react";
-import Recipe from "./Recipes/Recipe";
+import Recipe from "../Recipes/Recipe";
 
 function SearchBar({ recipes }) {
   const [results, setResults] = useState([]);

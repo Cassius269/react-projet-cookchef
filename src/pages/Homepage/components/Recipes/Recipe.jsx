@@ -3,7 +3,7 @@ import styles from "../../../../assets/styles/layouts/Recipe.module.scss";
 import { UrlAPIContext } from "../../../../context/UrlAPIContext";
 import Loading from "../../../../components/Loading";
 
-const Recipe = ({ recipe, toggleLikedRecipe }) => {
+const Recipe = ({ recipe, toggleLikedRecipe, deleteRecipe }) => {
   console.log("resultat", recipe);
   // Récupéer l'URL de l'API des recettes depuis le contexte de l'app
   const BASE_URL_API = useContext(UrlAPIContext);
@@ -12,7 +12,7 @@ const Recipe = ({ recipe, toggleLikedRecipe }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   // Gestionnaire d'évenement pour changer l'état du composant recette concernant si le bouton Like
-  const handleClick = () => {
+  const handleClickLikeRecipe = () => {
     const updateRecipeFromAPI = async (recipeToUpdate) => {
       const { _id, ...payload } = recipeToUpdate;
       try {
@@ -40,9 +40,35 @@ const Recipe = ({ recipe, toggleLikedRecipe }) => {
     updateRecipeFromAPI({ ...recipe, isLiked: !recipe.isLiked });
   };
 
+  const handleClickDeleteRecipe = async (_id) => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(`${BASE_URL_API}/${_id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        deleteRecipe(_id);
+        console.log(data);
+      } else {
+        console.log("Ooops une erreur");
+      }
+    } catch (error) {
+      console.log(`Erreur : ${error.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   // Mettre à jour la wishlist
   return (
-    <article className="col-8 col-md-6 col-lg-3">
+    <article className="col-8 col-md-6 col-lg-3 position-relative">
+      <button
+        className="btn btn-danger w-25 position-absolute"
+        onClick={() => handleClickDeleteRecipe(recipe._id)}
+      >
+        <i className="bi bi-trash"></i>
+      </button>
       <img
         className={styles.imageRecipe}
         src={recipe.imageUrl}
@@ -58,7 +84,7 @@ const Recipe = ({ recipe, toggleLikedRecipe }) => {
         <Loading isLarge={false} />
       ) : (
         <i
-          onClick={handleClick}
+          onClick={handleClickLikeRecipe}
           role="button"
           className={`bi bi-heart-fill fs-5 d-block-inline m-auto ${recipe.isLiked ? "text-danger" : ""}`}
         ></i>

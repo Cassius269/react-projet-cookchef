@@ -1,6 +1,6 @@
 import Recipe from "./Recipe";
 
-export default function Recipes({ recipes, updateRecipe }) {
+export default function Recipes({ recipes, updateRecipe, deleteRecipe }) {
   return (
     <>
       <h1 className="text-primary">
@@ -9,7 +9,12 @@ export default function Recipes({ recipes, updateRecipe }) {
       <div className="row d-flex justify-content-center gap-4 gap-md-4 gap-lg-5">
         {recipes.map((r) => {
           return (
-            <Recipe key={r._id} recipe={r} toggleLikedRecipe={updateRecipe} />
+            <Recipe
+              key={r._id}
+              recipe={r}
+              toggleLikedRecipe={updateRecipe}
+              deleteRecipe={deleteRecipe}
+            />
           );
         })}
       </div>

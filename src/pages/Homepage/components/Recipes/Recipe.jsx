@@ -26,7 +26,7 @@ const Recipe = ({ recipe, toggleLikedRecipe, deleteRecipe }) => {
         if (response.ok) {
           const data = await response.json();
           console.log("Réponse du serveur", data);
-          toggleLikedRecipe(recipeToUpdate); // mettre à jour l'état local de la recette
+          toggleLikedRecipe(data); // mettre à jour l'état local de la recette
         } else {
           console.log("Ooops, une erreur");
         }
@@ -79,10 +79,15 @@ const Recipe = ({ recipe, toggleLikedRecipe, deleteRecipe }) => {
         loading="lazy"
       />
       <h2 className="bg-danger">{recipe.title}</h2>
-      <p>
-        {noteToStars(recipe.note)} {Math.trunc(recipe.note * 5)}/5{" "}
-      </p>
-      <p>{recipe.comments.length} avis </p>
+      {recipe.note ? (
+        <p>
+          {noteToStars(recipe.note)} {Math.trunc(recipe.note * 5)}/5{" "}
+        </p>
+      ) : (
+        ""
+      )}
+
+      {recipe.comments?.length && <p> {recipe.comments?.length} avis </p>}
       {isLoading ? (
         <Loading isLarge={false} />
       ) : (

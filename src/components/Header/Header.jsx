@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "../../assets/styles/layouts/Header.module.scss";
 import Popover from "./Popover";
 
-function Header() {
+function Header({ setPage }) {
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = () => {
@@ -14,6 +14,7 @@ function Header() {
       <div className="d-flex align-items-center">
         <a href="/">
           <img
+            onClick={() => setPage("homepage")}
             className="ms-3"
             src="https://svgsilh.com/svg/303194.svg"
             alt="logo"
@@ -27,6 +28,13 @@ function Header() {
         className="d-flex flex-direction-row gap-4 gap-md-5 align-items-center"
       >
         <button
+          onClick={() => setPage("admin")}
+          type="button"
+          className="btn btn-secondary d-flex align-items-center gap-2 rounded-3 p-3 text-white"
+        >
+          <i className="bi bi-plus"></i>Ajouter une recette
+        </button>
+        <button
           type="button"
           className="btn btn-secondary d-flex align-items-center gap-2 rounded-3 p-3 text-white"
         >
@@ -38,13 +46,16 @@ function Header() {
       </div>
 
       {/* Header mobile */}
-      {isActive && <Popover onClick={() => setIsActive(false)} />}
+      {isActive && (
+        <Popover onClick={() => setIsActive(false)} setPage={setPage} />
+      )}
       <i
         popoverTarget="my-popover"
         role="button"
         onClick={handleClick}
         id={styles.burgerIcon}
         className={`d-sm-block text-secondary d-md-none bi bi-${isActive ? "circle text-danger" : "list"} text-primary fs-1`}
+        style={{ zIndex: 40 }}
       ></i>
     </header>
   );

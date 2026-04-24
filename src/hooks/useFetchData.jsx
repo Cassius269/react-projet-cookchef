@@ -15,6 +15,7 @@ function useFetchData(url, page) {
         if (page) {
           queryParams.append("limit", 10);
           queryParams.append("skip", (page - 1) * 10);
+          queryParams.append("sort", "createdAt:desc");
         }
         const response = await fetch(`${url}?${queryParams}`);
 
@@ -51,6 +52,7 @@ function useFetchData(url, page) {
   // console.log(recipes);
 
   // Les valeurs à retourner par le hook personnalisé
+  data;
   return { data, setData, isLoading };
 }
 

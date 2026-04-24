@@ -63,12 +63,15 @@ const Recipe = ({ recipe, toggleLikedRecipe, deleteRecipe }) => {
   // Mettre à jour la wishlist
   return (
     <article className="col-8 col-md-6 col-lg-3 position-relative">
-      <button
+      {/* <button
         className="btn btn-danger w-25 position-absolute"
+        // onClick={() => handleClickDeleteRecipe(recipe._id)}
+      > */}
+      <i
         onClick={() => handleClickDeleteRecipe(recipe._id)}
-      >
-        <i className="bi bi-trash"></i>
-      </button>
+        className="bi bi-trash position-absolute top-0 end-0 fs-2 bg-danger text-white rounded-5 ps-3 pe-3 pt-2 pb-2 me-3 mt-3 shadow"
+      ></i>
+      {/* </button> */}
       <img
         className={styles.imageRecipe}
         src={recipe.imageUrl}

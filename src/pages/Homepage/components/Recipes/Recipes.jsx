@@ -12,7 +12,7 @@ export default function Recipes({ recipes, updateRecipe, deleteRecipe }) {
             <Recipe
               key={r._id}
               recipe={r}
-              toggleLikedRecipe={updateRecipe}
+              updateRecipe={updateRecipe}
               deleteRecipe={deleteRecipe}
             />
           );

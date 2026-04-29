@@ -1,8 +1,9 @@
 import { useState } from "react";
 import styles from "../../assets/styles/layouts/Header.module.scss";
 import Popover from "./Popover";
+import { NavLink } from "react-router";
 
-function Header({ setPage }) {
+function Header() {
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = () => {
@@ -12,43 +13,58 @@ function Header({ setPage }) {
   return (
     <header className="container-fluid border border-2 p-2 d-flex justify-content-between">
       <div className="d-flex align-items-center">
-        <a href="/">
+        <NavLink to="/">
           <img
-            onClick={() => setPage("homepage")}
             className="ms-3"
             src="https://svgsilh.com/svg/303194.svg"
             alt="logo"
             width={30}
           />
-        </a>
+        </NavLink>
       </div>
 
-      <div
+      <ul
         id={styles.divButtons}
         className="d-flex flex-direction-row gap-4 gap-md-5 align-items-center"
       >
-        <button
-          onClick={() => setPage("admin")}
-          type="button"
-          className="btn btn-secondary d-flex align-items-center gap-2 rounded-3 p-3 text-white"
-        >
-          <i className="bi bi-plus"></i>Ajouter une recette
-        </button>
-        <button
-          type="button"
-          className="btn btn-secondary d-flex align-items-center gap-2 rounded-3 p-3 text-white"
-        >
-          <i className="bi bi-heart-fill"></i>WishList
-        </button>
-        <button type="button" className="btn btn-dark">
-          Connexion
-        </button>
-      </div>
+        <li>
+          <NavLink to="/admin/recipes/add_recipe">
+            <button
+              onClick={() =>
+                console.log(
+                  "Aller vers la page ajout de recette depuis le header desktop",
+                )
+              }
+              type="button"
+              className="btn btn-secondary d-flex align-items-center gap-2 rounded-3 p-3 text-white"
+            >
+              <i className="bi bi-plus"></i>
+              Ajouter une recette
+            </button>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="#">
+            <button
+              type="button"
+              className="btn btn-secondary d-flex align-items-center gap-2 rounded-3 p-3 text-white"
+            >
+              <i className="bi bi-heart-fill"></i>
+              WishList
+            </button>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="#">
+            <button type="button" className="btn btn-dark">
+              Connexion
+            </button>
+          </NavLink>
+        </li>
+      </ul>
 
       {/* Header mobile */}
-      {isActive && (
-        <Popover onClick={() => setIsActive(false)} setPage={setPage} />
-      )}
+      {isActive && <Popover setIsActive={setIsActive} />}
       <i
         popoverTarget="my-popover"
         role="button"

@@ -16,5 +16,14 @@ header {
         @media screen and (width <= 796px) {
             display: none !important;
         }
+       
     }
+
+     a{
+        &:global(.active) {
+         color: $primary !important;  // pour le texte direct dans <a>
+        & * {
+            color: $primary !important;  // pour les enfants (<button>, <i>...)
+        }
+}}
 }

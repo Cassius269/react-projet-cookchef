@@ -1,24 +1,31 @@
+import { NavLink } from "react-router";
 import popoverStyles from "../../assets/styles/layouts/PopOver.module.scss";
 
-const popover = ({ onClick, setPage }) => {
+const Popover = ({ onClick, setIsActive }) => {
   return (
     <>
       <div className="position-relative" onClick={onClick}>
         <ul popover="" id="my-popover" className={popoverStyles.myPopover}>
           <li>
-            <a role="button" href="#" onClick={() => setPage("admin")}>
+            <NavLink
+              to="/admin/recipes/add_recipe"
+              onClick={() => {
+                setIsActive(false);
+                console.log(
+                  "aller vers la page nouvelle recette depuis popover mobile",
+                );
+              }}
+            >
               <i className="bi bi-plus"></i> Ajouter une Recette
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a role="button" href="#">
-              WishList
-            </a>
+            <NavLink>WishList</NavLink>
           </li>
           <li>
-            <a role="button" href="#">
+            <NavLink role="button" href="#">
               Connexion
-            </a>
+            </NavLink>
           </li>
         </ul>
       </div>
@@ -26,4 +33,4 @@ const popover = ({ onClick, setPage }) => {
   );
 };
 
-export default popover;
+export default Popover;

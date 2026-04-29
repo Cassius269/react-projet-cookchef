@@ -2,20 +2,26 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Homepage from "./pages/Homepage/Homepage";
 import { SeedRecipes } from "./assets/data/SeedRecipes";
-import { useState } from "react";
 import Admin from "./pages/Admin/Admin";
+import { Outlet } from "react-router";
+import { Suspense } from "react";
 
 // SeedRecipes(); // peupler l'API par les recettes locales par défaut
 
 export default function App() {
-  // Système de routing simple avec la page courante
-  const [page, setPage] = useState("homepage");
-
   return (
     <>
-      <Header setPage={setPage} />
-      {page === "homepage" && <Homepage />}
-      {page === "admin" && <Admin />}
+      <Header />
+      {/** Contenu dynamique en fonction des routes enfants */}
+      <Suspense
+        fallback={
+          <p className="text-center text-warning mt-5 vh-100">
+            Chargement en cours
+          </p>
+        }
+      >
+        <Outlet />
+      </Suspense>
       <Footer />
     </>
   );

@@ -3,10 +3,9 @@ import HeaderAdmin from "../../components/AdminRecipeNav";
 import Recipe from "../../components/Recipe";
 import { deleteRecipe as deleteR } from "../../../../../../api";
 import useFetchRecipes from "../../../../../../hooks/useFetchRecipes";
-import { UrlAPIContext } from "../../../../../../context/UrlAPIContext";
 
 function AdminRecipesList() {
-  const { recipes, setRecipes } = useFetchRecipes(UrlAPIContext);
+  const { recipes, setRecipes } = useFetchRecipes();
 
   console.log(recipes);
 

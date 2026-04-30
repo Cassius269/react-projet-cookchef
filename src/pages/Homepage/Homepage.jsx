@@ -2,7 +2,6 @@ import { useState } from "react";
 import Recipes from "./components/Recipes/Recipes";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Loading from "../../components/Loading";
-import { UrlAPIContext } from "../../context/UrlAPIContext";
 import { deleteRecipe as deleteR, updateRecipe as updateR } from "../../api";
 import useFetchRecipes from "../../hooks/useFetchRecipes";
 

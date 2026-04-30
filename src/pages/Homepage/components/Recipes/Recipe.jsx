@@ -1,12 +1,9 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import styles from "../../../../assets/styles/layouts/Recipe.module.scss";
-import { UrlAPIContext } from "../../../../context/UrlAPIContext";
 import Loading from "../../../../components/Loading";
 
 const Recipe = ({ recipe, updateRecipe, deleteRecipe }) => {
   console.log("resultat", recipe);
-  // Récupéer l'URL de l'API des recettes depuis le contexte de l'app
-  const BASE_URL_API = useContext(UrlAPIContext);
 
   // Déclaration de l'état du composant
   const [isLoading, setIsLoading] = useState(false);

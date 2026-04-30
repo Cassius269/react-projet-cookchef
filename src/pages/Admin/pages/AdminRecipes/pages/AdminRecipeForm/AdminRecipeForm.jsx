@@ -1,14 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { UrlAPIContext } from "../../../../../../context/UrlAPIContext";
 import { useNavigate } from "react-router";
 import AdminRecipeNav from "../../components/AdminRecipeNav";
+import { createRecipe } from "../../../../../../api";
 
 function RecipeForm() {
-  const BASE_URL_API = useContext(UrlAPIContext);
-
   // Mise en place de la navigation programmatique
   const navigate = useNavigate();
 
@@ -55,38 +52,14 @@ function RecipeForm() {
   // Envoi des données à l'API
   const onSubmit = async (newRecipe) => {
     console.log(newRecipe);
-    console.log(BASE_URL_API);
-    // const payload = { ...newRecipe };
-    clearErrors();
 
     try {
-      const response = await fetch(`${BASE_URL_API}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newRecipe),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-
-        console.log(data);
-        reset(defaultValues); // réinitialiser le formulaire avec les valeurs par défaut
-        navigate("/"); // rediriger l'utilisateur à la page d'accueil
-      } else {
-        // console.log(`Ooops une erreur`);
-        setError("generic", {
-          type: "server",
-          message: "Ooops une erreur",
-        });
-      }
+      clearErrors();
+      await createRecipe(newRecipe); // envoyer la recette à l'API
+      reset(defaultValues); // réinitialiser le formulaire avec les valeurs par défaut
+      navigate("/"); // rediriger l'utilisateur à la page d'accueil
     } catch (error) {
-      // console.log(`Error: ${error.message}`);
-      setError("generic", {
-        type: "server",
-        message: error.message,
-      });
+      setError("generic", { type: "generic", message: "Il y a une erreur" });
     }
   };
 

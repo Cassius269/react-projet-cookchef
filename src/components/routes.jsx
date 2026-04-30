@@ -1,6 +1,7 @@
 import { createBrowserRouter, redirect } from "react-router";
 import App from "../App";
 import { lazy } from "react";
+import { getRecipeById } from "../api";
 
 const Homepage = lazy(() => import("../pages/Homepage/Homepage"));
 
@@ -14,13 +15,9 @@ const AdminUsers = lazy(
 
 const Admin = lazy(() => import("../pages/Admin/Admin"));
 
-const RecipeForm = lazy(
+const AdminRecipeForm = lazy(
   () =>
     import("../pages/Admin/pages/AdminRecipes/pages/AdminRecipeForm/AdminRecipeForm"),
-);
-
-const AdminRecipeForm = lazy(
-  () => import("../pages/Admin/pages/AdminRecipes/components/AdminRecipeForm"),
 );
 
 const AdminRecipesList = lazy(
@@ -44,6 +41,10 @@ export const ROUTER = createBrowserRouter([
         caseSensitive: true,
         children: [
           {
+            index: true,
+            loader: () => redirect("recipes/list"),
+          },
+          {
             path: "recipes",
             Component: AdminRecipes,
             children: [
@@ -57,10 +58,15 @@ export const ROUTER = createBrowserRouter([
               },
               {
                 path: "new",
-                Component: RecipeForm,
+                loader: () => ({ recipe: null }), // renvoyer une donnée null pour le formulaire en mode création
+                Component: AdminRecipeForm,
               },
               {
                 path: "edit/:recipeId",
+                loader: async ({ params }) => {
+                  return { recipe: await getRecipeById(params.recipeId) };
+                },
+                hydrateFallbackElement: <p>Chargement en cours</p>,
                 Component: AdminRecipeForm,
               },
             ],

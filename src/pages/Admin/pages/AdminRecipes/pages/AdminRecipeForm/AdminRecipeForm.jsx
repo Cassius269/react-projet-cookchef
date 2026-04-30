@@ -1,11 +1,14 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { useNavigate } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import AdminRecipeNav from "../../components/AdminRecipeNav";
-import { createRecipe } from "../../../../../../api";
+import { createRecipe, updateRecipe } from "../../../../../../api";
 
 function RecipeForm() {
+  // Récupérer la recette courante si mode édition
+  const { recipe } = useLoaderData();
+
   // Mise en place de la navigation programmatique
   const navigate = useNavigate();
 
@@ -31,9 +34,9 @@ function RecipeForm() {
 
   // Gestion du formulaire
   const defaultValues = {
-    title: "",
-    imageUrl: "",
-    content: "",
+    title: recipe?.title ?? "",
+    imageUrl: recipe?.imageUrl ?? "",
+    content: recipe?.content ?? "",
   };
 
   const {
@@ -55,9 +58,13 @@ function RecipeForm() {
 
     try {
       clearErrors();
-      await createRecipe(newRecipe); // envoyer la recette à l'API
+      if (recipe) {
+        await updateRecipe({ ...newRecipe, _id: recipe._id });
+      } else {
+        await createRecipe(newRecipe); // envoyer la recette à l'API
+      }
       reset(defaultValues); // réinitialiser le formulaire avec les valeurs par défaut
-      navigate("/"); // rediriger l'utilisateur à la page d'accueil
+      navigate("../"); // rediriger l'utilisateur à la page d'accueil
     } catch (error) {
       setError("generic", { type: "generic", message: "Il y a une erreur" });
     }
@@ -67,7 +74,9 @@ function RecipeForm() {
     <>
       <AdminRecipeNav />
       <h3 className="text-center mt-4">
-        Formulaire de création de nouvelle recette
+        {recipe
+          ? " Formulaire de mise à jour de recette"
+          : " Formulaire de création de nouvelle recette"}
       </h3>
       <form
         action="#"
@@ -142,7 +151,9 @@ function RecipeForm() {
         >
           Sauvegarder
         </button>
-        {errors?.generic && <p>{errors.generic.message}</p>}
+        {errors?.generic && (
+          <p className="text-danger mt-1">{errors.generic.message}</p>
+        )}
       </form>
     </>
   );

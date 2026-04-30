@@ -18,7 +18,7 @@ async function getRecipeById(_id) {
     const response = await fetch(`${URL_RECIPE_URL}/${_id}`);
 
     if(response.ok){
-        return response.json(); 
+        return await response.json(); 
     }else {
         throw new Error("Oops erreur de récupération d'une recetete ");
     }

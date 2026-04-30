@@ -4,7 +4,10 @@ import styles from "../../../assets/styles/layouts/AdminNav.module.scss";
 function AdminNav() {
   return (
     <>
-      <nav className={`${styles.nav}border pt-3 ms-3 bg-warning-subtle`}>
+      <nav
+        className={`${styles.nav}border pt-3 ms-3 bg-warning-subtle`}
+        style={{ minHeight: "70vh" }}
+      >
         <ul className="d-flex flex-column pe-4 gap-4 mt-2">
           <li>
             <NavLink

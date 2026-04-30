@@ -13,6 +13,7 @@ export default function App() {
     <>
       <Header />
       {/** Contenu dynamique en fonction des routes enfants */}
+
       <Suspense
         fallback={
           <p className="text-center text-warning mt-5 vh-100">
@@ -20,7 +21,9 @@ export default function App() {
           </p>
         }
       >
-        <Outlet />
+        <div style={{ minHeight: "80vh", flex: 1 }}>
+          <Outlet />
+        </div>
       </Suspense>
       <Footer />
     </>

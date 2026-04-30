@@ -2,10 +2,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { UrlAPIContext } from "../../../../../../context/UrlAPIContext";
-import HeaderAdmin from "../../../ListRecipes/components/HeaderAdmin";
+import { UrlAPIContext } from "../../../../../context/UrlAPIContext";
 
-function RecipeForm() {
+function AdminRecipeForm({ recipeToUpdate }) {
   const BASE_URL_API = useContext(UrlAPIContext);
 
   // Schéma de validation
@@ -30,9 +29,9 @@ function RecipeForm() {
 
   // Gestion du formulaire
   const defaultValues = {
-    title: "",
-    imageUrl: "",
-    content: "",
+    title: recipeToUpdate.title,
+    imageUrl: recipeToUpdate.imageUrl,
+    content: recipeToUpdate.content,
   };
 
   const {
@@ -49,19 +48,19 @@ function RecipeForm() {
   });
 
   // Envoi des données à l'API
-  const onSubmit = async (newRecipe) => {
-    console.log(newRecipe);
+  const onSubmit = async (updatedRecipe) => {
+    console.log(updatedRecipe);
     console.log(BASE_URL_API);
     // const payload = { ...newRecipe };
     clearErrors();
 
     try {
-      const response = await fetch(`${BASE_URL_API}`, {
-        method: "POST",
+      const response = await fetch(`${BASE_URL_API}/${updatedRecipe._id}`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newRecipe),
+        body: JSON.stringify(updatedRecipe),
       });
 
       if (response.ok) {
@@ -87,9 +86,7 @@ function RecipeForm() {
 
   return (
     <>
-      <h3 className="text-center mt-4">
-        Formulaire de création de nouvelle recette
-      </h3>
+      <h3 className="text-center mt-4">Formulaire de mise à jour de recette</h3>
       <form
         action="#"
         method="POST"
@@ -169,4 +166,4 @@ function RecipeForm() {
   );
 }
 
-export default RecipeForm;
+export default AdminRecipeForm;

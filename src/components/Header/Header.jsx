@@ -28,7 +28,7 @@ function Header() {
         className="d-flex flex-direction-row gap-4 gap-md-5 align-items-center"
       >
         <li>
-          <NavLink to="/admin/recipes/add_recipe">
+          <NavLink to="/admin">
             <button
               onClick={() =>
                 console.log(
@@ -39,7 +39,7 @@ function Header() {
               className="btn btn-secondary d-flex align-items-center gap-2 rounded-3 p-3 text-white"
             >
               <i className="bi bi-plus"></i>
-              Ajouter une recette
+              Admin
             </button>
           </NavLink>
         </li>

@@ -8,7 +8,7 @@ const Popover = ({ onClick, setIsActive }) => {
         <ul popover="" id="my-popover" className={popoverStyles.myPopover}>
           <li>
             <NavLink
-              to="/admin/recipes/add_recipe"
+              to="/admin"
               onClick={() => {
                 setIsActive(false);
                 console.log(
@@ -16,7 +16,7 @@ const Popover = ({ onClick, setIsActive }) => {
                 );
               }}
             >
-              <i className="bi bi-plus"></i> Ajouter une Recette
+              Admin
             </NavLink>
           </li>
           <li>

@@ -1,63 +1,29 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Recipes from "./components/Recipes/Recipes";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Loading from "../../components/Loading";
 import { UrlAPIContext } from "../../context/UrlAPIContext";
-import useFetchRecipes from "../../hooks/useFetchData";
+import { deleteRecipe as deleteR, updateRecipe as updateR } from "../../api";
+import useFetchRecipes from "../../hooks/useFetchRecipes";
 
 function Homepage() {
-  // Récupérer le context de l'URL de l'API telle que fournie en valeur dans "/src/main.jsx"
-  const BASE_URL_API = useContext(UrlAPIContext);
   const [page, setPage] = useState(1);
 
-  const {
-    data: recipes,
-    setData: setRecipes,
-    isLoading,
-  } = useFetchRecipes(BASE_URL_API, page);
+  const { recipes, setRecipes, isLoading } = useFetchRecipes(page);
 
-  // console.log(recipes);
   // Mettre à jour une recette
   const updateRecipe = async (updatedRecipe) => {
-    const { _id, ...payload } = updatedRecipe;
-    try {
-      const response = await fetch(`${BASE_URL_API}/${_id}`, {
-        method: "PATCH",
-        body: JSON.stringify({ ...payload }),
-        headers: { "Content-Type": "application/json" },
-      });
+    const savedRecipeAPI = await updateR(updatedRecipe);
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Réponse du serveur", data);
-        setRecipes(
-          recipes.map((r) => (r._id === updatedRecipe._id ? updatedRecipe : r)),
-        );
-      } else {
-        console.log("Ooops, une erreur");
-      }
-    } catch (error) {
-      console.log(`Erreur: ${error.message}`);
-    }
+    setRecipes(
+      recipes.map((r) => (r._id === savedRecipeAPI._id ? savedRecipeAPI : r)),
+    );
   };
 
   // Supprimer une recette
   const deleteRecipe = async (_id) => {
-    try {
-      const response = await fetch(`${BASE_URL_API}/${_id}`, {
-        method: "DELETE",
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        return setRecipes(recipes.filter((r) => r._id !== _id));
-      } else {
-        console.log("Ooops une erreur");
-      }
-    } catch (error) {
-      console.log(`Erreur : ${error.message}`);
-    }
+    await deleteR(_id);
+    return setRecipes(recipes.filter((r) => r._id !== _id));
   };
 
   // Gestionnaire d'évenement de la pagination
@@ -67,7 +33,7 @@ function Homepage() {
     <main className="container">
       <SearchBar recipes={recipes} />
       <section>
-        {isLoading && !recipes.length ? (
+        {isLoading && !recipes?.length ? (
           <Loading isLarge={false} />
         ) : (
           <Recipes

@@ -1,0 +1,9 @@
+// Importation des variables de couleurs
+@use '../utils/variables' as *;
+
+nav {
+    a {
+        transition: color 0.3s !important;
+        transition: background-color 0.3s !important;
+    }
+}

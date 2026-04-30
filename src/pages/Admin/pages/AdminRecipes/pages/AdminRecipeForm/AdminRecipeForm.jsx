@@ -2,10 +2,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { UrlAPIContext } from "../../../../context/UrlAPIContext";
+import { UrlAPIContext } from "../../../../../../context/UrlAPIContext";
+import { useNavigate } from "react-router";
+import AdminRecipeNav from "../../components/AdminRecipeNav";
 
-function UpdateRecipe({ recipeToUpdate }) {
+function RecipeForm() {
   const BASE_URL_API = useContext(UrlAPIContext);
+
+  // Mise en place de la navigation programmatique
+  const navigate = useNavigate();
 
   // Schéma de validation
   const recipeSchema = yup.object({
@@ -29,9 +34,9 @@ function UpdateRecipe({ recipeToUpdate }) {
 
   // Gestion du formulaire
   const defaultValues = {
-    title: recipeToUpdate.title,
-    imageUrl: recipeToUpdate.imageUrl,
-    content: recipeToUpdate.content,
+    title: "",
+    imageUrl: "",
+    content: "",
   };
 
   const {
@@ -48,19 +53,19 @@ function UpdateRecipe({ recipeToUpdate }) {
   });
 
   // Envoi des données à l'API
-  const onSubmit = async (updatedRecipe) => {
-    console.log(updatedRecipe);
+  const onSubmit = async (newRecipe) => {
+    console.log(newRecipe);
     console.log(BASE_URL_API);
     // const payload = { ...newRecipe };
     clearErrors();
 
     try {
-      const response = await fetch(`${BASE_URL_API}/${updatedRecipe._id}`, {
-        method: "PATCH",
+      const response = await fetch(`${BASE_URL_API}`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(updatedRecipe),
+        body: JSON.stringify(newRecipe),
       });
 
       if (response.ok) {
@@ -68,6 +73,7 @@ function UpdateRecipe({ recipeToUpdate }) {
 
         console.log(data);
         reset(defaultValues); // réinitialiser le formulaire avec les valeurs par défaut
+        navigate("/"); // rediriger l'utilisateur à la page d'accueil
       } else {
         // console.log(`Ooops une erreur`);
         setError("generic", {
@@ -86,7 +92,10 @@ function UpdateRecipe({ recipeToUpdate }) {
 
   return (
     <>
-      <h3 className="text-center mt-4">Formulaire de mise à jour de recette</h3>
+      <AdminRecipeNav />
+      <h3 className="text-center mt-4">
+        Formulaire de création de nouvelle recette
+      </h3>
       <form
         action="#"
         method="POST"
@@ -166,4 +175,4 @@ function UpdateRecipe({ recipeToUpdate }) {
   );
 }
 
-export default UpdateRecipe;
+export default RecipeForm;

@@ -19,11 +19,11 @@ header {
        
     }
 
-     a{
-        &:global(.active) {
-         color: $primary !important;  // pour le texte direct dans <a>
-        & * {
-            color: $primary !important;  // pour les enfants (<button>, <i>...)
-        }
-}}
+//      a{
+//         &:global(.active) {
+//          color: $primary !important;  // pour le texte direct dans <a>
+//         & * {
+//             color: $primary !important;  // pour les enfants (<button>, <i>...)
+//         }
+// }}
 }

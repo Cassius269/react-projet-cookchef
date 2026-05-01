@@ -1,6 +1,7 @@
+import type { recipeListProps } from "../../../../interfaces";
 import Recipe from "./Recipe";
 
-export default function Recipes({ recipes, updateRecipe, deleteRecipe }) {
+export default function Recipes({ recipes, updateRecipe, deleteRecipe }: recipeListProps) {
   return (
     <>
       <h1 className="text-primary">

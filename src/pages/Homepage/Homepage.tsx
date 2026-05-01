@@ -2,8 +2,9 @@ import { useState } from "react";
 import Recipes from "./components/Recipes/Recipes";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Loading from "../../components/Loading";
-import { deleteRecipe as deleteR, updateRecipe as updateR } from "../../api";
+import { deleteRecipe as deleteR, updateRecipe as updateR } from "../../apis";
 import useFetchRecipes from "../../hooks/useFetchRecipes";
+import type { recipeI } from "../../interfaces";
 
 function Homepage() {
   const [page, setPage] = useState(1);
@@ -11,7 +12,7 @@ function Homepage() {
   const { recipes, setRecipes, isLoading } = useFetchRecipes(page);
 
   // Mettre à jour une recette
-  const updateRecipe = async (updatedRecipe) => {
+  const updateRecipe  = async (updatedRecipe: recipeI): Promise<void> => {
     const savedRecipeAPI = await updateR(updatedRecipe);
 
     setRecipes(
@@ -20,9 +21,9 @@ function Homepage() {
   };
 
   // Supprimer une recette
-  const deleteRecipe = async (_id) => {
+  const deleteRecipe = async (_id: string): Promise<void> => {
     await deleteR(_id);
-    return setRecipes(recipes.filter((r) => r._id !== _id));
+    setRecipes(recipes.filter((r) => r._id !== _id));
   };
 
   // Gestionnaire d'évenement de la pagination

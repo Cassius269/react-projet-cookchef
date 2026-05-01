@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
 import HeaderAdmin from "../../components/AdminRecipeNav";
 import Recipe from "../../components/Recipe";
-import { deleteRecipe as deleteR } from "../../../../../../api";
+import { deleteRecipe as deleteR } from "../../../../../../apis";
 import useFetchRecipes from "../../../../../../hooks/useFetchRecipes";
 
 function AdminRecipesList() {
@@ -9,7 +9,7 @@ function AdminRecipesList() {
 
   console.log(recipes);
 
-  const deleteRecipe = async (_id) => {
+  const deleteRecipe = async (_id: string) => {
     await deleteR(_id);
     setRecipes(recipes.filter((r) => r._id !== _id));
     console.log("Supprimé");

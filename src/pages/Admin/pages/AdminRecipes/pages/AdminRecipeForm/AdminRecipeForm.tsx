@@ -3,7 +3,8 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { useLoaderData, useNavigate } from "react-router";
 import AdminRecipeNav from "../../components/AdminRecipeNav";
-import { createRecipe, updateRecipe } from "../../../../../../api";
+import { createRecipe, updateRecipe } from "../../../../../../apis";
+import type { recipeForm, recipeI } from "../../../../../../interfaces";
 
 function RecipeForm() {
   // Récupérer la recette courante si mode édition
@@ -15,18 +16,21 @@ function RecipeForm() {
   // Schéma de validation
   const recipeSchema = yup.object({
     title: yup
-      .string("Doit être du texte")
+      .string()
+      .typeError("Doit être du texte")
       .required("Le titre est obligatoire")
       .min(10, "Minimum 10 caractères")
       .max(40, "Maximum 40 caractères"),
     imageUrl: yup
-      .string("Doit être du texte")
+      .string()
+      .typeError("Doit être du texte")
       .required("L'image est obligatoire")
       .url("L'image doit être un lien valide")
       .min(10, "Minimum 10 caractères")
       .max(100, "Maximum 100 caractères"),
     content: yup
-      .string("Doit être du texte")
+      .string()
+      .typeError("Doit être du texte")
       .required("Le contenu est obligatoire")
       .min(100, "Minimum 100 caractères")
       .max(1000, "Maximum 1000 caractères"),
@@ -46,14 +50,14 @@ function RecipeForm() {
     setError,
     clearErrors, // vider les erreurs
     handleSubmit,
-  } = useForm({
+  } = useForm<recipeForm>({
     defaultValues: defaultValues,
     criteriaMode: "all",
-    resolver: yupResolver(recipeSchema),
+    resolver: yupResolver(recipeSchema)
   });
 
   // Envoi des données à l'API
-  const onSubmit = async (newRecipe) => {
+  const onSubmit = async (newRecipe: Partial<recipeI>) => {
     console.log(newRecipe);
 
     try {
@@ -95,11 +99,11 @@ function RecipeForm() {
             id="title"
             className="form-control"
           />
-          {errors?.title && (
+          {errors?.title?.types && (
             <ul>
               {Object.keys(errors.title.types).map((k) => (
                 <li key={k} className="text-danger">
-                  {errors.title.types[k]}
+                  {errors.title?.types[k]}
                 </li>
               ))}
             </ul>
@@ -134,7 +138,7 @@ function RecipeForm() {
             id="content"
             className="form-control"
           ></textarea>
-          {errors?.content && (
+          {errors?.content?.ty && (
             <ul>
               {Object.keys(errors.content.types).map((k) => (
                 <li key={k} className="text-danger">

@@ -1,10 +1,8 @@
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
-import Homepage from "./pages/Homepage/Homepage";
 import { SeedRecipes } from "./assets/data/SeedRecipes";
-import Admin from "./pages/Admin/Admin";
 import { Outlet } from "react-router";
 import { Suspense } from "react";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 // SeedRecipes(); // peupler l'API par les recettes locales par défaut
 

@@ -3,7 +3,8 @@ import styles from "../../assets/styles/layouts/Header.module.scss";
 import Popover from "./Popover";
 import { NavLink } from "react-router";
 
-function Header() {
+function Header()
+  {
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = () => {

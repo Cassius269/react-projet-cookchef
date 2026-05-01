@@ -1,8 +1,9 @@
 import { useState } from "react";
 import styles from "../../../../assets/styles/layouts/Recipe.module.scss";
 import Loading from "../../../../components/Loading";
+import type { recipeCardProps } from "../../../../interfaces";
 
-const Recipe = ({ recipe, updateRecipe, deleteRecipe }) => {
+const Recipe = ({ recipe, updateRecipe, deleteRecipe }: recipeCardProps) => {
   console.log("resultat", recipe);
 
   // Déclaration de l'état du composant
@@ -10,11 +11,11 @@ const Recipe = ({ recipe, updateRecipe, deleteRecipe }) => {
 
   // Gestionnaire d'évenement pour changer l'état du composant recette concernant si le bouton Like
   const handleClickLikeRecipe = () => {
-    updateRecipe({ ...recipe, isLiked: !recipe.isLiked });
+    updateRecipe?.({ ...recipe, isLiked: !recipe.isLiked }); // utilisation de la méthode optionnelle de l'interface recipe
   };
 
-  const handleClickDeleteRecipe = (_id) => {
-    deleteRecipe(_id);
+  const handleClickDeleteRecipe = (_id: string) => {
+    deleteRecipe?.(_id); // utilisation de la méthode optionnelle de l'interface recipe
   };
   // Mettre à jour la wishlist
   return (
@@ -57,7 +58,7 @@ const Recipe = ({ recipe, updateRecipe, deleteRecipe }) => {
   );
 };
 
-function noteToStars(note) {
+function noteToStars(note: number) {
   let stars = "";
   let limit = Math.trunc(note * 5);
 

@@ -1,10 +1,10 @@
 import { NavLink } from "react-router";
 import popoverStyles from "../../assets/styles/layouts/PopOver.module.scss";
 
-const Popover = ({ onClick, setIsActive }) => {
+const Popover = ({setIsActive }) => {
   return (
     <>
-      <div className="position-relative" onClick={onClick}>
+      <div className="position-relative">
         <ul popover="" id="my-popover" className={popoverStyles.myPopover}>
           <li>
             <NavLink
@@ -20,10 +20,10 @@ const Popover = ({ onClick, setIsActive }) => {
             </NavLink>
           </li>
           <li>
-            <NavLink>WishList</NavLink>
+            <NavLink to="#">WishList</NavLink>
           </li>
           <li>
-            <NavLink role="button" href="#">
+            <NavLink to="#">
               Connexion
             </NavLink>
           </li>

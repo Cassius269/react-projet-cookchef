@@ -1,9 +1,10 @@
+import type { recipeI } from "../interfaces/recipe";
 
 const URL_RECIPE_URL = 'https://www.restapi.fr/api/recipes';
 
 // Déclaration des fonctions asynchrones du CRUD
 // exporter des promises à gérer avec le composant <Suspens>
-async function getRecipes(queryParam) {
+async function getRecipes(queryParam : URLSearchParams ): Promise<recipeI[]> {
     const response = await fetch(`${URL_RECIPE_URL}${queryParam ? `?${queryParam}` : ''}`)
 
     if(response.ok){
@@ -14,7 +15,7 @@ async function getRecipes(queryParam) {
     }
 }
 
-async function getRecipeById(_id) {
+async function getRecipeById(_id : string): Promise<recipeI> {
     const response = await fetch(`${URL_RECIPE_URL}/${_id}`);
 
     if(response.ok){
@@ -24,7 +25,7 @@ async function getRecipeById(_id) {
     }
 }
 
-async function deleteRecipe(_id) {
+async function deleteRecipe(_id: string): Promise<string> {
     const response = await fetch(`${URL_RECIPE_URL}/${_id}`, { method: 'DELETE'});
 
     if(response.ok){
@@ -34,7 +35,7 @@ async function deleteRecipe(_id) {
     }
 }
 
-async function createRecipe(newRecipe) {
+async function createRecipe(newRecipe : Partial<recipeI>): Promise<recipeI> {
     const response = await fetch(`${URL_RECIPE_URL}`, {
         method:'POST', 
         headers: {
@@ -50,7 +51,7 @@ async function createRecipe(newRecipe) {
     }
 }
 
-async function updateRecipe(updatedRecipe) {
+async function updateRecipe(updatedRecipe: Partial<recipeI>): Promise<recipeI> {
     const {_id, ...payload} = updatedRecipe;
 
     const response = await fetch(`${URL_RECIPE_URL}/${_id}`, {

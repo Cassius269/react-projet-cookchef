@@ -1,18 +1,19 @@
 // Import de la data des recettes
 import { useState } from "react";
 import Recipe from "../Recipes/Recipe";
+import type { recipeI } from "../../../../interfaces";
 
-function SearchBar({ recipes }) {
-  const [results, setResults] = useState([]);
+function SearchBar({ recipes }:{recipes: recipeI[]}) {
+  const [results, setResults] = useState<recipeI[]>([]);
 
   // Désactiver le comportement par défaut de soumission de formulaire (éviter le chargement de page)
-  const handleSubmit = (e) => e.preventDefault();
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => e.preventDefault();
 
   // A chaque input tapé, faire une recherche instantanné sur les recettes pour trouver une équivalence
-  const handleInput = (e) => {
-    const q = e.target.value;
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const q : string = e.target.value;
     console.log(`q vaut ${q}`);
-    const search = recipes.filter((r) =>
+    const search: recipeI[]= recipes.filter((r) =>
       r.title.toLowerCase().includes(q.toLowerCase()),
     ); // chercher les occurences du mot tapé dans les titres de recette
     console.log(`Résultat : ${search}`);
@@ -30,12 +31,12 @@ function SearchBar({ recipes }) {
   return (
     <>
       <form
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={handleSubmit}
         action="#"
         className="d-flex w-75 mt-5 mb-5 gap-3 m-auto"
       >
         <input
-          onInput={(e) => handleInput(e)}
+          onChange={(e) => handleInput(e)}
           type="search"
           name="recipe-search"
           className="form-control"

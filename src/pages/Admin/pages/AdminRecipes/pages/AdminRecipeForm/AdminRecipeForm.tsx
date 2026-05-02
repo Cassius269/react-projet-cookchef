@@ -103,7 +103,7 @@ function RecipeForm() {
             <ul>
               {Object.keys(errors.title.types).map((k) => (
                 <li key={k} className="text-danger">
-                  {errors.title?.types[k]}
+                  {errors.title?.types?.[k]}
                 </li>
               ))}
             </ul>
@@ -121,9 +121,9 @@ function RecipeForm() {
           />
           {errors?.imageUrl && (
             <ul>
-              {Object.keys(errors.imageUrl.types).map((k) => (
+              {Object.keys(errors.imageUrl.types ?? {}).map((k) => (
                 <li key={k} className="text-danger">
-                  {errors.imageUrl.types[k]}
+                  {errors.imageUrl?.types?.[k]}
                 </li>
               ))}
             </ul>
@@ -138,11 +138,11 @@ function RecipeForm() {
             id="content"
             className="form-control"
           ></textarea>
-          {errors?.content?.ty && (
+          {errors?.content?.type && (
             <ul>
-              {Object.keys(errors.content.types).map((k) => (
+              {Object.keys(errors.content.types ?? {}).map((k) => (
                 <li key={k} className="text-danger">
-                  {errors.content.types[k]}
+                  {errors.content?.types?.[k]}
                 </li>
               ))}
             </ul>

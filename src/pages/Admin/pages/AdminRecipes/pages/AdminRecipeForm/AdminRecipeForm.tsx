@@ -101,7 +101,7 @@ function RecipeForm() {
           />
           {errors?.title?.types && (
             <ul>
-              {Object.keys(errors.title.types).map((k) => (
+              {Object.keys(errors?.title?.types).map((k) => (
                 <li key={k} className="text-danger">
                   {errors.title?.types?.[k]}
                 </li>
@@ -140,7 +140,7 @@ function RecipeForm() {
           ></textarea>
           {errors?.content?.type && (
             <ul>
-              {Object.keys(errors.content.types ?? {}).map((k) => (
+              {Object.keys(errors?.content?.types ?? {}).map((k) => (
                 <li key={k} className="text-danger">
                   {errors.content?.types?.[k]}
                 </li>

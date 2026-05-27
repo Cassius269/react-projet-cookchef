@@ -13,7 +13,7 @@ function RecipeForm() {
   // Mise en place de la navigation programmatique
   const navigate = useNavigate();
 
-  // Schéma de validation
+  // Schéma de validation des données du formulaire
   const recipeSchema = yup.object({
     title: yup
       .string()
@@ -61,7 +61,7 @@ function RecipeForm() {
     console.log(newRecipe);
 
     try {
-      clearErrors();
+      clearErrors(); // nettoyer les erreurs
       if (recipe) {
         await updateRecipe({ ...newRecipe, _id: recipe._id });
       } else {
@@ -86,7 +86,7 @@ function RecipeForm() {
         action="#"
         method="POST"
         className="border rounded-2 p-5 m-auto mt-4"
-        style={{ width: 500 }}
+        style={{width:'94%'}}
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="mt-4">

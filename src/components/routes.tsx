@@ -2,6 +2,7 @@ import { createBrowserRouter, redirect } from "react-router";
 import App from "../App";
 import { lazy } from "react";
 import { getRecipeById } from "../apis/recipes";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 
 const Homepage = lazy(() => import("../pages/Homepage/Homepage"));
 
@@ -37,8 +38,11 @@ export const ROUTER = createBrowserRouter([
       },
       {
         path: "admin",
-        Component: Admin,
+        element:(<ProtectedRoute>
+          < Admin />
+        </ProtectedRoute>),
         caseSensitive: true,
+        
         children: [
           {
             index: true,
@@ -76,7 +80,9 @@ export const ROUTER = createBrowserRouter([
             path: "users",
             Component: AdminUsers,
           },
-          { path: "*", Component: AdminRecipes }, // capturer toutes les sous URL /admin inexistantes vers la page des recettes
+          { path: "*", // capturer toutes les sous URL /admin inexistantes vers la page des recettes
+            Component: AdminRecipes 
+          }, 
         ],
       },
     ],

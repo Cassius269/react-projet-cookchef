@@ -1,5 +1,4 @@
 import { Outlet } from "react-router";
-import HeaderAdmin from "./components/AdminRecipeNav";
 import { Suspense } from "react";
 
 function AdminRecipes() {

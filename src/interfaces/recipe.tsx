@@ -3,6 +3,7 @@ export interface recipeI  {
     title: string,
     imageUrl: string, 
     content: string,
+    authorId: string,
     isLiked? : boolean // propriété optionnelle
     note?: number, 
     comments?: string[]

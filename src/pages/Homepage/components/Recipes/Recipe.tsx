@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "../../../../assets/styles/layouts/Recipe.module.scss";
 import Loading from "../../../../components/Loading";
 import type { recipeCardProps } from "../../../../interfaces";
+import {AuthContext} from '../../../../context/AuthContext';
 
 const Recipe = ({ recipe, updateRecipe, deleteRecipe }: recipeCardProps) => {
+  // Récupérer l'utilisateur connecté depuis le contexte d'authentification
+  const {currentUser} = useContext(AuthContext);
+
   console.log("resultat", recipe);
 
   // Déclaration de l'état du composant
@@ -24,10 +28,11 @@ const Recipe = ({ recipe, updateRecipe, deleteRecipe }: recipeCardProps) => {
         className="btn btn-danger w-25 position-absolute"
         // onClick={() => handleClickDeleteRecipe(recipe._id)}
       > */}
-      <i
+      {currentUser?._id === recipe?.authorId && <i
         onClick={() => handleClickDeleteRecipe(recipe._id)}
         className="bi bi-trash position-absolute top-0 end-0 fs-2 bg-danger text-white rounded-5 ps-3 pe-3 pt-2 pb-2 me-3 mt-3 shadow"
-      ></i>
+      ></i>}
+     
       {/* </button> */}
       <img
         className={styles.imageRecipe}

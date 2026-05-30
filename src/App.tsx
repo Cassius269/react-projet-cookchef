@@ -3,12 +3,14 @@ import { Outlet } from "react-router";
 import { Suspense } from "react";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import AuthProvider from "./components/AuthProvider/AuthProvider";
 
 // SeedRecipes(); // peupler l'API par les recettes locales par défaut
 
 export default function App() {
   return (
     <>
+    <AuthProvider>
       <Header />
       {/** Contenu dynamique en fonction des routes enfants */}
 
@@ -24,6 +26,7 @@ export default function App() {
         </div>
       </Suspense>
       <Footer />
+    </AuthProvider>
     </>
   );
 }

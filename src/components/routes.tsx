@@ -3,6 +3,9 @@ import App from "../App";
 import { lazy } from "react";
 import { getRecipeById } from "../apis/recipes";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
+import Signin from "../pages/Signin/Signin";
+import { getUserById } from "../apis";
+import { getCurrentUser } from "../apis/auth";
 
 const Homepage = lazy(() => import("../pages/Homepage/Homepage"));
 
@@ -26,15 +29,33 @@ const AdminRecipesList = lazy(
     import("../pages/Admin/pages/AdminRecipes/pages/AdminRecipesList/AdminRecipesList"),
 );
 
+const Signup = lazy(
+  () => import('../pages/Signup/Signup'),
+);
+
+const Signin = lazy(
+  () => import('../pages/Signin/Signin'),
+);
+
 export const ROUTER = createBrowserRouter([
   {
     path: "/",
     Component: App,
+    loader: async () => await getCurrentUser() ,
+    hydrateFallbackElement: (<p className="text-center color-secondary">test en cours</p>), 
     children: [
       {
         // path: "/",
         index: true,
         Component: Homepage,
+      },
+      {
+        path: 'signup',
+        Component: Signup
+      },
+      {
+        path: 'signin',
+        Component: Signin
       },
       {
         path: "admin",

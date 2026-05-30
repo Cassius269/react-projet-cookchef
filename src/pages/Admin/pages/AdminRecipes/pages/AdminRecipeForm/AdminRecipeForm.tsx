@@ -5,8 +5,13 @@ import { useLoaderData, useNavigate } from "react-router";
 import AdminRecipeNav from "../../components/AdminRecipeNav";
 import { createRecipe, updateRecipe } from "../../../../../../apis";
 import type { recipeForm, recipeI } from "../../../../../../interfaces";
+import { useContext } from "react";
+import {AuthContext} from '../../../../../../context/AuthContext';
 
 function RecipeForm() {
+  // Récupérer l'utilisateur courant depuis le contexte d'authentification
+  const {currentUser} = useContext(AuthContext);
+
   // Récupérer la recette courante si mode édition
   const { recipe } = useLoaderData();
 
@@ -59,13 +64,13 @@ function RecipeForm() {
   // Envoi des données à l'API
   const onSubmit = async (newRecipe: Partial<recipeI>) => {
     console.log(newRecipe);
+    clearErrors(); // nettoyer les erreurs
 
     try {
-      clearErrors(); // nettoyer les erreurs
       if (recipe) {
         await updateRecipe({ ...newRecipe, _id: recipe._id });
       } else {
-        await createRecipe(newRecipe); // envoyer la recette à l'API
+        await createRecipe({authorId: currentUser._id, ...newRecipe}); // envoyer la recette à l'API
       }
       reset(defaultValues); // réinitialiser le formulaire avec les valeurs par défaut
       navigate("../"); // rediriger l'utilisateur à la page d'accueil

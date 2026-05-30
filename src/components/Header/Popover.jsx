@@ -21,9 +21,29 @@ const Popover = ({setIsActive }) => {
           </li>
           <li>
             <NavLink to="#">WishList</NavLink>
+          </li>          
+          <li>
+            <NavLink 
+              onClick={() => {
+                  setIsActive(false);
+                  console.log(
+                    "aller vers la page d'inscription depuis popover mobile",
+                  );
+                }}          to="/signup"
+              >
+              Inscription
+            </NavLink>
           </li>
           <li>
-            <NavLink to="#">
+            <NavLink 
+              to="/signin"
+              onClick={() => {
+                  setIsActive(false);
+                  console.log(
+                    "aller vers la page de connexion depuis popover mobile",
+                  );
+                }}    
+            >
               Connexion
             </NavLink>
           </li>

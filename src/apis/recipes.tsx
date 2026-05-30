@@ -1,11 +1,11 @@
 import type { recipeI } from "../interfaces/recipe";
 
-const URL_RECIPE_URL = 'https://www.restapi.fr/api/recipes';
+const API_RECIPES = '/api/recipes';
 
 // Déclaration des fonctions asynchrones du CRUD
 // exporter des promises à gérer avec le composant <Suspens>
 async function getRecipes(queryParam : URLSearchParams ): Promise<recipeI[]> {
-    const response = await fetch(`${URL_RECIPE_URL}${queryParam ? `?${queryParam}` : ''}`)
+    const response = await fetch(`${API_RECIPES}${queryParam ? `?${queryParam}` : ''}`)
 
     if(response.ok){
         const data = await response.json();
@@ -16,7 +16,7 @@ async function getRecipes(queryParam : URLSearchParams ): Promise<recipeI[]> {
 }
 
 async function getRecipeById(_id : string): Promise<recipeI> {
-    const response = await fetch(`${URL_RECIPE_URL}/${_id}`);
+    const response = await fetch(`${API_RECIPES}/${_id}`);
 
     if(response.ok){
         return await response.json(); 
@@ -26,7 +26,7 @@ async function getRecipeById(_id : string): Promise<recipeI> {
 }
 
 async function deleteRecipe(_id: string): Promise<string> {
-    const response = await fetch(`${URL_RECIPE_URL}/${_id}`, { method: 'DELETE'});
+    const response = await fetch(`${API_RECIPES}/${_id}`, { method: 'DELETE'});
 
     if(response.ok){
         return await response.json(); 
@@ -36,7 +36,8 @@ async function deleteRecipe(_id: string): Promise<string> {
 }
 
 async function createRecipe(newRecipe : Partial<recipeI>): Promise<recipeI> {
-    const response = await fetch(`${URL_RECIPE_URL}`, {
+    console.log('rrecçu',newRecipe)
+    const response = await fetch(`${API_RECIPES}`, {
         method:'POST', 
         headers: {
             'Content-Type': 'application/json'
@@ -54,7 +55,7 @@ async function createRecipe(newRecipe : Partial<recipeI>): Promise<recipeI> {
 async function updateRecipe(updatedRecipe: Partial<recipeI>): Promise<recipeI> {
     const {_id, ...payload} = updatedRecipe;
 
-    const response = await fetch(`${URL_RECIPE_URL}/${_id}`, {
+    const response = await fetch(`${API_RECIPES}/${_id}`, {
         method:'PATCH', 
         headers: {
             'Content-Type': 'application/json'

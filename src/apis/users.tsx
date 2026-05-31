@@ -1,7 +1,7 @@
 import type { userI } from "../interfaces/user";
 
-const API_URL = import.meta.env.VITE_API_URL;
-const API_USERS = `${API_URL ?? ''}/api/users`;
+const API = import.meta.env.VITE_API_URL; 
+const API_USERS = `${API}/api/users`;
 
 // Déclaration des fonctions asynchrones du CRUD
 // exporter des promises à gérer avec le composant <Suspens>

@@ -1,12 +1,12 @@
 import type { recipeI } from "../interfaces/recipe";
 
-const API_URL = import.meta.env.VITE_API_URL;
-const API_RECIPES = `${API_URL ?? ''}/api/recipes`;
+const API = import.meta.env.VITE_API_URL; 
+const API_RECIPES = `${API}/api/users`;
 
 // Déclaration des fonctions asynchrones du CRUD
 // exporter des promises à gérer avec le composant <Suspens>
 async function getRecipes(queryParam : URLSearchParams ): Promise<recipeI[]> {
-    const response = await fetch(`${API_RECIPES}${queryParam ? `?${queryParam}` : ''}`)
+    const response = await fetch(`/${API_RECIPES}${queryParam ? `?${queryParam}` : ''}`)
 
     if(response.ok){
         const data = await response.json();

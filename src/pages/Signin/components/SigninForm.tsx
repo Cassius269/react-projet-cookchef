@@ -3,12 +3,13 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import type { userI } from '../../../interfaces/user';
 import { Navigate, useNavigate } from 'react-router';
-import { signin } from '../../../apis/auth';
 import { useContext } from 'react';
 import {AuthContext} from '../../../context/AuthContext';
 
 function SigninForm(){
-const {currentUser} = useContext(AuthContext);
+const {currentUser, login} = useContext(AuthContext);
+
+const navigate = useNavigate();
 
     // Schéma de validation des données
     const userSchema = yup.object({
@@ -45,8 +46,8 @@ const {currentUser} = useContext(AuthContext);
         clearErrors(); // nettoyer les erreurs du formulaire
 
         try{
-            const user = await signin(credentials);
-
+            const user = await login(credentials); // authentification depuis la méthode augmentée du provider
+            navigate('/'); //redirection utilisateur après connexion réussie
         }catch(error){
             setError('root.serverError',{
                 type:'server',

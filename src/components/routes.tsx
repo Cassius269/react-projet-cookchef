@@ -3,7 +3,6 @@ import App from "../App";
 import { lazy } from "react";
 import { getRecipeById } from "../apis/recipes";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
-import Signin from "../pages/Signin/Signin";
 import { getUserById } from "../apis";
 import { getCurrentUser } from "../apis/auth";
 

@@ -1,6 +1,6 @@
 import type { recipeI } from "../interfaces/recipe";
 
-const API_RECIPES = '/api/recipes';
+const API_RECIPES = `${import.meta.env.API_URL}/api/recipes`;
 
 // Déclaration des fonctions asynchrones du CRUD
 // exporter des promises à gérer avec le composant <Suspens>

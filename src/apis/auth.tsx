@@ -1,11 +1,11 @@
 import type { userI } from "../interfaces/user";
 
-const API = 'https://express-js-recipes-api.onrender.com/api'; // utiliser le proxy Vite en développement pour le routage
+const API = import.meta.env.API_URL;
 
 // Requête de connexion 
 async function signin(credentials: userI){
     try {
-        const response = await fetch(`${API}/auth`, {
+        const response = await fetch(`${API}/api/auth`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

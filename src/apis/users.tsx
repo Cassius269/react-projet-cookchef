@@ -1,6 +1,6 @@
 import type { userI } from "../interfaces/user";
 
-const API_USERS = '/api/users';
+const API_USERS = `${import.meta.env.API_URL}/api/users`;
 
 // Déclaration des fonctions asynchrones du CRUD
 // exporter des promises à gérer avec le composant <Suspens>

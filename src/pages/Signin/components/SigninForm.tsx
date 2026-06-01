@@ -8,7 +8,7 @@ import { useContext } from 'react';
 import {AuthContext} from '../../../context/AuthContext';
 
 function SigninForm(){
-const {currentUser} = useContext(AuthContext);
+const {currentUser, login} = useContext(AuthContext);
 
     // Schéma de validation des données
     const userSchema = yup.object({
@@ -45,7 +45,7 @@ const {currentUser} = useContext(AuthContext);
         clearErrors(); // nettoyer les erreurs du formulaire
 
         try{
-            const user = await signin(credentials);
+            const user = await login(credentials);
 
         }catch(error){
             setError('root.serverError',{

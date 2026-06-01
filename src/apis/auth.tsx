@@ -1,6 +1,6 @@
 import type { userI } from "../interfaces/user";
 
-const API = '/api'; // utiliser le proxy Vite en développement pour le routage
+const API = 'https://express-js-recipes-api.onrender.com/api'; // utiliser le proxy Vite en développement pour le routage
 
 // Requête de connexion 
 async function signin(credentials: userI){

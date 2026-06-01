@@ -60,7 +60,7 @@ const {currentUser, login} = useContext(AuthContext);
         {currentUser ? 
             <Navigate to='/' /> 
                 : 
-            (<form action="#" method="POST" onSubmit={handleSubmit((values) => submit(values))}>
+            (<form action="#" method="POST" onSubmit={handleSubmit((values) => submit(values))} className='px-4 px-md-5'>
                  <div className='mt-3'>
                         <label htmlFor="email">Email</label>
                         <input  {...register('email')} type="email"  id="email" className='form-control' />    

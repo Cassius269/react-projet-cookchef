@@ -12,11 +12,11 @@ export default defineConfig({
   server: {
     proxy: {
       "/auth": {
-        target: "http://127.0.0.1:3001",
+        target: "https://express-js-recipes-api.onrender.com",
         changeOrigin: true,
       },
       "/api": {
-        target: "http://127.0.0.1:3001",
+        target: "https://express-js-recipes-api.onrender.com",
         changeOrigin: true,
       },
     },

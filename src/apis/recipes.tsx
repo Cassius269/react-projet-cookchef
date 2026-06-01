@@ -1,7 +1,7 @@
 import type { recipeI } from "../interfaces/recipe";
 
-const API_RECIPES = `${import.meta.env.VITEAPI_URL}/api/recipes`;
-
+const API_RECIPES = `${import.meta.env.VITE_API_URL}/api/recipes`;
+console.log('API_RECIPES', API_RECIPES);
 // Déclaration des fonctions asynchrones du CRUD
 // exporter des promises à gérer avec le composant <Suspens>
 async function getRecipes(queryParam : URLSearchParams ): Promise<recipeI[]> {

@@ -1,7 +1,7 @@
 import type { userI } from "../interfaces/user";
 
 const API_USERS = `${import.meta.env.VITEAPI_URL}/api/users`;
-
+console.log('API_USERS', API_USERS);
 // Déclaration des fonctions asynchrones du CRUD
 // exporter des promises à gérer avec le composant <Suspens>
 async function getUsers(queryParam : URLSearchParams ): Promise<userI[]> {

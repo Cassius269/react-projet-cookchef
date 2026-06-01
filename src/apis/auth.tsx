@@ -1,10 +1,11 @@
 import type { userI } from "../interfaces/user";
 
-const API = import.meta.env.VITEAPI_URL;
+const API = import.meta.env.VITE_API_URL;
+console.log(import.meta.env.VITE_API_URL);    
 
 // Requête de connexion 
 async function signin(credentials: userI){
-    try {
+try {
         const response = await fetch(`${API}/api/auth`, {
             method: 'POST',
             headers: {
@@ -28,7 +29,7 @@ async function signin(credentials: userI){
 // Réquête pour récupérer l'utilisateur courant
 async function getCurrentUser(){
     try {
-        const response = await fetch(`${API}/me`,{
+        const response = await fetch(`${API}/api/me`,{
             credentials: 'include'
         });
 
@@ -47,7 +48,7 @@ async function getCurrentUser(){
 // Requête de déconnexion
 async function signout(){
     try {
-        const response = await fetch(`${API}/logout`, {
+        const response = await fetch(`${API}/api/logout`, {
             method: 'DELETE',
             credentials: 'include'
         })

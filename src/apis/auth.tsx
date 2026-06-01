@@ -1,6 +1,6 @@
 import type { userI } from "../interfaces/user";
 
-const API = import.meta.env.API_URL;
+const API = import.meta.env.VITEAPI_URL;
 
 // Requête de connexion 
 async function signin(credentials: userI){

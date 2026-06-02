@@ -1,6 +1,6 @@
 import type { userI } from "../interfaces/user";
 
-const API_USERS = `${import.meta.env.VITE_API_URL}/api/recipes`;
+const API_USERS = `${import.meta.env.VITE_API_URL}/api/users`;
 console.log('API_USERS', API_USERS);
 // Déclaration des fonctions asynchrones du CRUD
 // exporter des promises à gérer avec le composant <Suspens>
@@ -47,7 +47,7 @@ async function createUser(newUser : Partial<userI>): Promise<userI> {
     if(response.ok){
         return await response.json(); 
     }else {
-        throw new Error((await response.json()).message || "Oops erreur de suppression d'un utilisateur ");
+        throw new Error((await response.json()).message || "Oops erreur de création d'un utilisateur ");
     }
 }
 
